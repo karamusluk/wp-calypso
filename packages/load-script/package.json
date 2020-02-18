@@ -24,7 +24,8 @@
 	},
 	"dependencies": {
 		"@babel/runtime": "^7.4.4",
-		"debug": "^4.0.0"
+		"debug": "^4.0.0",
+		"tslib": "^1.10.0"
 	},
 	"scripts": {
 		"clean": "npx rimraf dist",

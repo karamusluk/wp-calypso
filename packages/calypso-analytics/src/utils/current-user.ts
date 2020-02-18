@@ -7,6 +7,7 @@ import hashPii from './hash-pii';
  * External dependencies
  */
 import { UserData } from '../../../../client/lib/user/user';
+
 /**
  * Module variables
  */

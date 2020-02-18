@@ -5,6 +5,6 @@
 		"declaration": false,
 		"declarationDir": null,
 		"outDir": "dist/cjs",
-		"tsBuildInfoFile": "../../.tsc-cache/data-stores-cjs"
+		"tsBuildInfoFile": "../../.tsc-cache/calypso-analytics-cjs"
 	}
 }

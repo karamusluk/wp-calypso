@@ -13,7 +13,6 @@ import { getCurrentUser, setCurrentUser } from './utils/current-user';
 import getDoNotTrack from './utils/do-not-track';
 import { getPageViewParams } from './page-view-params';
 import debug from './utils/debug';
-import { UserData } from '../../../client/lib/user/user';
 
 /**
  * Tracks uses a bunch of special query params that should not be used as property name
@@ -108,7 +107,7 @@ export function getTracksAnonymousUserId(): string {
 }
 
 export function initializeAnalytics(
-	currentUser: UserData | undefined,
+	currentUser: any | undefined,
 	superProps: any
 ): Promise< void > {
 	// Update super props.
@@ -128,7 +127,7 @@ export function initializeAnalytics(
 	return checkForBlockedTracks();
 }
 
-export function identifyUser( userData: UserData ): any {
+export function identifyUser( userData: any ): any {
 	// Ensure object.
 	if ( 'object' !== typeof userData ) {
 		debug( 'Invalid userData.', userData );

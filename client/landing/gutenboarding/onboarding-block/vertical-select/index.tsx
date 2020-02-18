@@ -141,7 +141,7 @@ const VerticalSelect: FunctionComponent< StepProps > = ( {
 
 	useEffect( () => {
 		recordTracksPageViewWithPageParams( '/gutenboarding' );
-	}, [ false ] );
+	}, [] );
 
 	return (
 		<Question
