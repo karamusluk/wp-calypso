@@ -36,6 +36,7 @@ export function getCurrentUser(): CurrentUser {
  * @param {object} currentUser the user data for the current user
  * @returns {object|undefined} Current user.
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function setCurrentUser( currentUser: any ): CurrentUser | undefined {
 	if (
 		! currentUser.ID ||
