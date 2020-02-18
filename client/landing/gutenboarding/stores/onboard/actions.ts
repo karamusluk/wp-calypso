@@ -52,6 +52,14 @@ export const resetOnboardStore = () => ( {
 	type: 'RESET_ONBOARD_STORE' as const,
 } );
 
+export const openSignupModal = () => ( {
+	type: 'OPEN_SIGNUP_MODAL' as const,
+} );
+
+export const closeSignupModal = () => ( {
+	type: 'CLOSE_SIGNUP_MODAL' as const,
+} );
+
 export type OnboardAction = ReturnType<
 	| typeof setDomain
 	| typeof setSelectedDesign
@@ -61,4 +69,6 @@ export type OnboardAction = ReturnType<
 	| typeof togglePageLayout
 	| typeof setShouldCreate
 	| typeof resetOnboardStore
+	| typeof openSignupModal
+	| typeof closeSignupModal
 >;

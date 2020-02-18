@@ -77,6 +77,17 @@ const shouldCreate: Reducer< boolean, OnboardAction > = ( state = false, action 
 	return state;
 };
 
+const showSignupModal: Reducer< boolean, OnboardAction > = ( state = false, action ) => {
+	switch ( action.type ) {
+		case 'OPEN_SIGNUP_MODAL':
+			return true;
+		case 'CLOSE_SIGNUP_MODAL':
+			return false;
+		default:
+			return state;
+	}
+};
+
 const reducer = combineReducers( {
 	domain,
 	selectedDesign,
@@ -84,6 +95,7 @@ const reducer = combineReducers( {
 	siteVertical,
 	pageLayouts,
 	shouldCreate,
+	showSignupModal,
 } );
 
 export type State = ReturnType< typeof reducer >;
