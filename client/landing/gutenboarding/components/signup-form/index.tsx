@@ -13,7 +13,6 @@ import { __ as NO__, _x as NO_x } from '@wordpress/i18n';
 import { USER_STORE } from '../../stores/user';
 import { STORE_KEY as ONBOARD_STORE } from '../../stores/onboard';
 import './style.scss';
-import { useHistory } from 'react-router-dom';
 
 // TODO: deploy this change to @types/wordpress__element
 declare module '@wordpress/element' {
@@ -27,13 +26,11 @@ declare module '@wordpress/element' {
 const SignupForm = () => {
 	const [ emailVal, setEmailVal ] = useState( '' );
 	const { createAccount } = useDispatch( USER_STORE );
-	const { setShouldCreate } = useDispatch( ONBOARD_STORE );
+	const { closeSignupModal, setShouldCreate } = useDispatch( ONBOARD_STORE );
 	const isFetchingNewUser = useSelect( select => select( USER_STORE ).isFetchingNewUser() );
 	const newUser = useSelect( select => select( USER_STORE ).getNewUser() );
 	const newUserError = useSelect( select => select( USER_STORE ).getNewUserError() );
 	const { shouldCreate } = useSelect( select => select( ONBOARD_STORE ) ).getState();
-
-	const history = useHistory();
 
 	const handleSignUp = ( event: React.FormEvent< HTMLFormElement > ) => {
 		event.preventDefault();
@@ -44,14 +41,13 @@ const SignupForm = () => {
 	const handleClose = () => {
 		if ( shouldCreate ) {
 			setShouldCreate( false );
-			history.goBack();
+			closeSignupModal();
 		}
 	};
 
 	return (
 		<Modal
 			className="signup-form"
-			isDismissible={ false }
 			title={ NO__( 'Sign up to save your changes' ) }
 			onRequestClose={ handleClose }
 		>

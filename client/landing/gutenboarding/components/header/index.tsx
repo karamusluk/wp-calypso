@@ -8,7 +8,6 @@ import React, { FunctionComponent, useEffect, useCallback } from 'react';
 import { useDebounce } from 'use-debounce';
 import classnames from 'classnames';
 import { DomainSuggestions } from '@automattic/data-stores';
-import { useHistory } from 'react-router-dom';
 
 /**
  * Internal dependencies
@@ -20,7 +19,6 @@ import './style.scss';
 import DomainPickerButton from '../domain-picker-button';
 import { selectorDebounce } from '../../constants';
 import Link from '../link';
-import { Step } from '../../steps';
 
 const DOMAIN_SUGGESTIONS_STORE = DomainSuggestions.register();
 
@@ -40,7 +38,9 @@ const Header: FunctionComponent< Props > = ( { prev } ) => {
 		select( ONBOARD_STORE ).getState()
 	);
 	const hasSelectedDesign = !! selectedDesign;
-	const { setDomain, resetOnboardStore, setShouldCreate } = useDispatch( ONBOARD_STORE );
+	const { openSignupModal, setDomain, resetOnboardStore, setShouldCreate } = useDispatch(
+		ONBOARD_STORE
+	);
 
 	const [ domainSearch ] = useDebounce( siteTitle, selectorDebounce );
 	const freeDomainSuggestion = useSelect(
@@ -63,8 +63,6 @@ const Header: FunctionComponent< Props > = ( { prev } ) => {
 			setDomain( undefined );
 		}
 	}, [ siteTitle, setDomain ] );
-
-	const history = useHistory();
 
 	const currentDomain = domain ?? freeDomainSuggestion;
 
@@ -108,7 +106,9 @@ const Header: FunctionComponent< Props > = ( { prev } ) => {
 
 	const handleSignup = () => {
 		setShouldCreate( true );
-		history.push( Step.Signup );
+		setTimeout( () => {
+			openSignupModal();
+		}, 0 );
 	};
 
 	useEffect( () => {

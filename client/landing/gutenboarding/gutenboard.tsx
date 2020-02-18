@@ -6,6 +6,7 @@ import { __ as NO__ } from '@wordpress/i18n';
 import { BlockEditorProvider, BlockList } from '@wordpress/block-editor';
 import { Popover, DropZoneProvider } from '@wordpress/components';
 import { createBlock, registerBlockType } from '@wordpress/blocks';
+import { useSelect } from '@wordpress/data';
 import '@wordpress/format-library';
 import React, { useRef } from 'react';
 // Uncomment and remove the redundant sass import from `./style.css` when a release after @wordpress/components@8.5.0 is published.
@@ -20,6 +21,8 @@ import Header from './components/header';
 import { name, settings } from './onboarding-block';
 import { routes, Step } from './steps';
 import './style.scss';
+import SignupForm from './components/signup-form';
+import { STORE_KEY as ONBOARD_STORE } from './stores/onboard';
 
 registerBlockType( name, settings );
 
@@ -39,6 +42,8 @@ export function Gutenboard() {
 	// which would collide with the routing done inside of the block
 	// (and would lead to weird mounting/unmounting behavior).
 	const onboardingBlock = useRef( createBlock( name, {} ) );
+
+	const { showSignupModal } = useSelect( select => select( ONBOARD_STORE ).getState() );
 
 	/* eslint-disable wpcalypso/jsx-classname-namespace */
 	return (
@@ -67,6 +72,7 @@ export function Gutenboard() {
 				</div>
 			</DropZoneProvider>
 			<Popover.Slot />
+			{ showSignupModal && <SignupForm /> }
 		</div>
 	);
 	/* eslint-enable wpcalypso/jsx-classname-namespace */
