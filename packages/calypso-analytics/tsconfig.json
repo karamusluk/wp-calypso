@@ -35,6 +35,6 @@
 		"incremental": true,
 		"tsBuildInfoFile": "../../.tsc-cache/calypso-analytics"
 	},
-	"files": [ "./src/index.ts", "./global.d.ts" ],
+	"files": [ "./src/index.ts" ],
 	"exclude": [ "**/docs/*", "**/test/*" ]
 }

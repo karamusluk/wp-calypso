@@ -14,6 +14,12 @@ import getDoNotTrack from './utils/do-not-track';
 import { getPageViewParams } from './page-view-params';
 import debug from './utils/debug';
 
+declare global {
+	interface Window {
+		_tkq: Array< Array< any > >;
+	}
+}
+
 /**
  * Tracks uses a bunch of special query params that should not be used as property name
  * See internal Nosara repo?
@@ -221,10 +227,15 @@ export function recordTracksPageView( urlPath: string, params: any ) {
 	debug( 'Recording pageview in tracks.', urlPath, params );
 
 	let eventProperties = {
-		build_timestamp: window.BUILD_TIMESTAMP,
 		do_not_track: getDoNotTrack() ? 1 : 0,
 		path: urlPath,
 	};
+
+	// Add calypso build timestamp if set
+	const build_timestamp = ( window as any ).BUILD_TIMESTAMP;
+	if ( build_timestamp ) {
+		eventProperties = assign( eventProperties, { build_timestamp } );
+	}
 
 	// add optional path params
 	if ( params ) {

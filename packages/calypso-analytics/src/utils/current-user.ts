@@ -4,11 +4,6 @@
 import hashPii from './hash-pii';
 
 /**
- * External dependencies
- */
-import { UserData } from '../../../../client/lib/user/user';
-
-/**
  * Module variables
  */
 let _currentUser: CurrentUser;
@@ -18,6 +13,7 @@ export interface CurrentUserHashedPii {
 	username: string;
 	email: string;
 }
+
 export interface CurrentUser {
 	ID: number;
 	username: string;
@@ -40,7 +36,7 @@ export function getCurrentUser(): CurrentUser {
  * @param {object} currentUser the user data for the current user
  * @returns {object|undefined} Current user.
  */
-export function setCurrentUser( currentUser: UserData ): CurrentUser | undefined {
+export function setCurrentUser( currentUser: any ): CurrentUser | undefined {
 	if (
 		! currentUser.ID ||
 		isNaN( Number( currentUser.ID ) ) ||

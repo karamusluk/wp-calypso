@@ -17,7 +17,7 @@
 		"dist",
 		"src"
 	],
-	"types": "types",
+	"types": "dist/types",
 	"publishConfig": {
 		"access": "public"
 	},
