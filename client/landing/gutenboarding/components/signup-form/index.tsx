@@ -32,10 +32,18 @@ const SignupForm = () => {
 	const newUserError = useSelect( select => select( USER_STORE ).getNewUserError() );
 	const { shouldCreate } = useSelect( select => select( ONBOARD_STORE ) ).getState();
 
-	const handleSignUp = ( event: React.FormEvent< HTMLFormElement > ) => {
+	const handleSignUp = async ( event: React.FormEvent< HTMLFormElement > ) => {
 		event.preventDefault();
 
-		createAccount( { email: emailVal, is_passwordless: true, signup_flow_name: 'gutenboarding' } );
+		const success = await createAccount( {
+			email: emailVal,
+			is_passwordless: true,
+			signup_flow_name: 'gutenboarding',
+		} );
+
+		if ( ( success as any ) as boolean ) {
+			closeSignupModal();
+		}
 	};
 
 	const handleClose = () => {
