@@ -36,13 +36,13 @@ import {
 	recordTracksPageView,
 	getCurrentUser,
 	recordTracksPageViewWithPageParams,
+	getMostRecentUrlPath,
 } from '@automattic/calypso-analytics';
 
 /**
  * Module variables
  */
 const identifyUserDebug = debug( 'calypso:analytics:identifyUser' );
-const pageViewDebug = debug( 'calypso:analytics:pageview' );
 const mcDebug = debug( 'calypso:analytics:mc' );
 const gaDebug = debug( 'calypso:analytics:ga' );
 const queueDebug = debug( 'calypso:analytics:queue' );
@@ -257,6 +257,7 @@ const analytics = {
 
 	timing: {
 		record: function( eventType, duration, triggerName ) {
+			const urlPath = getMostRecentUrlPath() || 'unknown';
 			analytics.ga.recordTiming( urlPath, eventType, duration, triggerName );
 			analytics.statsd.recordTiming( urlPath, eventType, duration, triggerName );
 		},

@@ -30,3 +30,7 @@ export function getPageViewParams( urlPath: string ): PageViewParams {
 	pathCounter++;
 	return params;
 }
+
+export function getMostRecentUrlPath(): string | null {
+	return mostRecentUrlPath;
+}
