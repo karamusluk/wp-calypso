@@ -33,7 +33,6 @@
 	"dependencies": {
 		"@automattic/load-script": "file:../load-script",
 		"@types/cookie": "^0.3.3",
-		"@types/qs": "^6.9.1",
 		"debug": "^4.1.1",
 		"hash.js": "^1.1.7",
 		"lodash": "^4.17.15"

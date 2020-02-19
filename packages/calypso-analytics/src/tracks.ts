@@ -251,7 +251,7 @@ export function recordTracksPageView( urlPath: string, params: any ) {
 		const utmParamEntries =
 			urlParams &&
 			Array.from( urlParams.entries() ).filter( ( [ key ] ) => key.startsWith( 'utm_' ) );
-		const utmParams = utmParamEntries ? Object.fromEntries( utmParamEntries ) : {};
+		const utmParams = utmParamEntries ? ( Object as any ).fromEntries( utmParamEntries ) : {};
 
 		eventProperties = assign( eventProperties, utmParams );
 	}
