@@ -40,7 +40,7 @@ const SignupForm = () => {
 			signup_flow_name: 'gutenboarding',
 		} );
 
-		if ( ( success as any ) as boolean ) {
+		if ( success ) {
 			closeSignupModal();
 		}
 	};
